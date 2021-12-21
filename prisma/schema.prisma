@@ -3,23 +3,14 @@
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["mongoDb"]
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id    String @id @default(dbgenerated()) @map("_id") @db.String
+  id    String @id @default(uuid())
   name  String
-  posts Post[]
-}
-
-model Post {
-  id     String  @id @default(dbgenerated()) @map("_id") @db.String
-  title  String
-  User   User   @relation(fields: [userId], references: [id])
-  userId String
 }

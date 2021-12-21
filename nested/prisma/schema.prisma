@@ -1,15 +1,14 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["mongoDb", "dataProxy"]
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
 model Log {
-  id      String @id @default(dbgenerated()) @map("_id") @db.ObjectId
+  id      String @id @default(uuid())
   level   Level
   message String? @unique
   meta    Json

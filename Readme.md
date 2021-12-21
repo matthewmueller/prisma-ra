@@ -5,6 +5,7 @@ Repro for: https://github.com/prisma/prisma/issues/9553
 1. Setup .env and create database
 1. `npm install`
 1. `npx prisma db push`
+1. `(cd nested && npm install)`
 1. `npx ts-node index.ts`
 
 You should see
@@ -32,5 +33,5 @@ Invalid `prisma.user.create()` invocation in
 
 To fix:
 
-1. `mv mongodb-unique ../` (move sub-project outside of your dir)
+1. `rm -rf nested/node_modules` (move sub-project outside of your dir)
 1. `npx ts-node index.ts`
